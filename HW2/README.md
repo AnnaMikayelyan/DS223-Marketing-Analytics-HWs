@@ -93,4 +93,58 @@ To run the experiment, use the following command:
 
 ```bash
 python bandit.py
+```
 
+## Bonus Files
+
+### **bonus.py**
+
+The `bonus.py` file implements additional experiments and algorithms for a **multi-armed bandit problem**, focusing on **multi-seed evaluation** and more advanced bandit strategies. The file includes:
+
+#### **Algorithms Implemented**:
+
+- **EpsilonGreedy** (ε_t = ε0 / t decay)
+- **ThompsonSampling** (Gaussian likelihood with known variance)
+- **UCB1** (Gaussian variant: `Q_i + c * sqrt(2 ln t / n_i)`)
+- **Hybrid_TS2Greedy** (TS warm-start for a fraction of the horizon, then greedy exploitation using frozen posterior means)
+
+#### **Evaluation**:
+
+The script runs each algorithm on the same environment across multiple RNG seeds, reports **noise-robust metrics** (including de-noised cumulative reward based on true means), and saves summary plots and a CSV with raw results.
+
+#### **Purpose**:
+
+The **bonus script** allows for the comparison of different exploration strategies across multiple trials, including an analysis of the **cumulative regret** and **de-noised cumulative reward** for each algorithm.
+
+---
+
+### **config_bonus.py**
+
+The `config_bonus.py` file contains configuration parameters specific to the `bonus.py` implementation. It allows easy modification of key settings like:
+
+#### **Bandit Environment**:
+
+- **BANDIT_MEANS**: The true mean rewards for each arm (e.g., `[1.0, 2.0, 3.0, 4.0]`).
+- **SIGMA**: The standard deviation of the rewards (set to **1.0**).
+
+#### **Experiment Horizon & Seeds**:
+
+- **TRIALS**: Number of trials for each experiment (e.g., **20000**).
+- **SEEDS**: List of RNG seeds used for multiple experiment runs (e.g., `[11, 23, 37, 41]`).
+
+#### **Algorithm Hyperparameters**:
+
+- **EG_EPS0**: Initial epsilon for **EpsilonGreedy** (**0.1**).
+- **TS_MU0**, **TS_TAU0**: Prior parameters for **ThompsonSampling** (**0.0** and **1.0** respectively).
+- **UCB1_C**: Exploration coefficient for **UCB1** (**1.0**).
+- **HYBRID_WARM_FRAC**: Fraction of the horizon allocated to **ThompsonSampling** before switching to **Greedy** in **Hybrid_TS2Greedy**.
+
+---
+
+### **Dependencies**
+
+To install the required libraries for this project, run:
+
+```bash
+pip install -r requirements.txt
+```
