@@ -4,19 +4,24 @@
 
 This project aims to predict **customer churn** using **survival analysis** techniques, specifically applying the **Weibull model** and other parametric models to estimate the probability of customer retention over time. The objective is to understand the factors that influence churn risk, calculate the **Customer Lifetime Value (CLV)** for each customer, and determine the necessary **retention budget** to reduce churn.
 
-## Dataset Description
+## Dataset
+The dataset contains the following columns:
 
-The dataset contains **customer demographic and usage data**, with the target variable being **churn** (whether a customer has churned, represented as 1 for "Yes" and 0 for "No"). Key features include:
-- **Tenure**: Duration of customer subscription (in months).
-- **Age**: Customer's age.
-- **Marital Status**: Whether the customer is married or unmarried.
-- **Income**: Annual income of the customer (in thousands).
-- **Education**: Customer's education level.
-- **Retirement Status**: Whether the customer is retired.
-- **Gender**: Gender of the customer.
-- **Internet and Voice Access**: Whether the customer has internet or voice services.
-- **Region**: Geographic region of the customer.
-- **Churn**: Target variable indicating whether the customer churned.
+- **ID**: Subscriber ID
+- **region**: Region code
+- **tenure**: Customer's lifetime (in months)
+- **age**: Subscriber’s age
+- **marital**: Subscriber’s marital status
+- **address**: Number of years living at the same address
+- **income**: Subscriber’s annual income (in thousands)
+- **ed**: Education level
+- **retire**: Retired status (Yes/No)
+- **gender**: Gender of the subscriber
+- **voice**: Whether the subscriber has voice service (Yes/No)
+- **internet**: Whether the subscriber has internet service (Yes/No)
+- **forward**: Whether call forwarding is active (Yes/No)
+- **custcat**: Customer category (e.g., E-service, Plus service, Total service)
+- **churn**: Whether the customer has churned (1: Churned, 0: Not Churned)
 
 ## Methodology
 
@@ -26,32 +31,36 @@ The analysis involves several **survival models** to predict customer churn:
 3. **Non-Parametric Models**: **Kaplan-Meier** and **Nelson-Aalen** methods were applied for comparison.
 4. **Model Comparison**: Models were evaluated based on **AIC (Akaike Information Criterion)** and **Log-Likelihood**.
 
-### Steps Taken:
-- **Data Preprocessing**: Converting categorical variables to numerical codes, applying **Label Encoding** for binary features, and **One-Hot Encoding** for multi-category features.
-- **Model Fitting**: Fitting different survival models to estimate churn probabilities and survival functions.
-- **Retention Budget Calculation**: Using **CLV** and survival probabilities to calculate the annual retention budget required to retain at-risk customers.
 
-## Key Findings
-
-- **Churn Probability**: The **Weibull model** predicted that **7.93% of customers** are likely to churn within the next 12 months.
-- **Customer Lifetime Value (CLV)**: The **average CLV** per customer is approximately **$2000**.
-- **Retention Budget**: To retain at-risk customers (those likely to churn), the estimated **annual retention budget** is around **$79,000**, based on **50% of the CLV** allocated for retention efforts.
-- **Most Valuable Segments**:
-  - **Retired customers** show higher **CLV** and lower churn rates, making them valuable segments.
-  - Customers with **no internet access** also exhibit lower churn rates and higher retention.
-
-## Retention Strategy
-
-Based on the findings, here are some retention strategies:
-1. **Targeted Retention Campaigns**: Focus on customers with **low tenure** or who are likely to churn soon, especially those without internet access or voice services.
-2. **Loyalty Programs**: Offer incentives to **retired customers** and those with **high CLV** to retain them longer.
-3. **Customer Engagement**: Implement proactive communication, loyalty rewards, and personalized offers to increase customer satisfaction and reduce churn.
 
 ## How to Run the Project
 
-### Dependencies:
-To run the analysis, you’ll need to install the following libraries:
+1. **Clone this repository**:
+  ```bash
+  git clone https://github.com/AnnaMikayelyan/DS223-Marketing-Analytics-HWs.git
+  ```
+2. **Navigate to the project directory**:
+  ```bash
+  cd DS223-Marketing-Analytics-HWs/HW3
+  ```
+3.**Create and activate a virtual environment**:
 
-```bash
-pip install pandas numpy lifelines scikit-learn matplotlib
+3.1. **On macOS/Linux**
+  ```bash
+  python3 -m venv venv
+  source venv/bin/activate
+  ```
+3.2. **On Windows**:
+  ```bash
+  python -m venv venv
+  .\venv\Scripts\activate
+  ```
+4. **Install dependencies**:
+  ```bash
+  pip install -r requirements.txt
+  ```
+5. **Open and run cells in a Jupyter Notebook**:
+  ```bash
+  HW3_Survival_Analysis.ipynb
+  ```
 
