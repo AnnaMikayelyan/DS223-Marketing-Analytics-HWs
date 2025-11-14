@@ -1,6 +1,6 @@
-# Churn Prediction and Retention Strategy - Survival Analysis
+# Survival Analysis with AFT Models
 
-## Project Overview
+## Overview
 
 This project aims to predict **customer churn** using **survival analysis** techniques, specifically applying the **Weibull model** and other parametric models to estimate the probability of customer retention over time. The objective is to understand the factors that influence churn risk, calculate the **Customer Lifetime Value (CLV)** for each customer, and determine the necessary **retention budget** to reduce churn.
 
